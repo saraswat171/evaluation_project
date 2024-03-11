@@ -1,10 +1,13 @@
 
 import './App.css';
 
+import Layout from './routes/Layout';
+
 function App() {
   return (
     <div className="App">
-    hhhhhhhh hello
+ <Layout/>
+
     </div>
   );
 }

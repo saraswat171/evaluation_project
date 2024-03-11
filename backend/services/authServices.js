@@ -1,4 +1,4 @@
-const UsersModel = require('../models/UserSchema')
+const UsersModel = require('../models/user')
 const CustomError = require('../libs/error')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt')
 exports.createUser=async(body)=>{
     try {
         
-        const { email, password } = body;
+        const { name ,email, password, role } = body;
         if( !email || !password ){
             throw new CustomError('Fields are required' , 400)
         }
@@ -18,7 +18,7 @@ exports.createUser=async(body)=>{
            throw new CustomError('email already exist' ,409);
         }
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newuser = await UsersModel.create({  email, password: hashedPassword });
+        const newuser = await UsersModel.create({name,  email, password: hashedPassword , role });
      
         return newuser
     }
